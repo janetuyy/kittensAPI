@@ -18,6 +18,9 @@ class Kitten(Base):
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, index=True)
     age = Column(Integer, index=True)
+    color = Column(String, index=True)
+    description = Column(String, index=True)
+
     breed_id = Column(Integer, ForeignKey("breeds.id"))
 
     breed = relationship("Breed", back_populates="kittens")

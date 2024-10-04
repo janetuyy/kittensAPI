@@ -19,6 +19,8 @@ class Breed(BreedBase):
 class KittenBase(BaseModel):
     name: str
     age: int
+    color: str
+    description: str
 
 
 class KittenCreate(KittenBase):

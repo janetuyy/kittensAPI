@@ -44,7 +44,7 @@ def create_kitten(db: Session, kitten: schemas.KittenCreate):
     breed = create_or_get_breed(db, kitten.breed_name)
 
     # Создать новую запись котенка
-    db_kitten = models.Kitten(name=kitten.name, age=kitten.age, breed_id=breed.id)
+    db_kitten = models.Kitten(name=kitten.name, age=kitten.age, color=kitten.color, description=kitten.description, breed_id=breed.id)
     db.add(db_kitten)
     db.commit()
     db.refresh(db_kitten)
@@ -62,6 +62,8 @@ def update_kitten(db: Session, kitten_id: int, kitten: schemas.KittenCreate):
     # Обновить данные котенка
     db_kitten.name = kitten.name
     db_kitten.age = kitten.age
+    db_kitten.color = kitten.color
+    db_kitten.description = kitten.description
     db_kitten.breed_id = breed.id
 
     db.commit()
@@ -80,4 +82,6 @@ def delete_kitten(db: Session, kitten_id: int):
         "id": db_kitten.id,
         "name": db_kitten.name,
         "age": db_kitten.age,
+        "color": db_kitten.color,
+        "description": db_kitten.description
     }
